@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ContactHub - Smart Contact Manager</title>
+    <!-- font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <!-- favicon -->
+    <link rel="icon" href="images/favicon.png" />
+    <!-- font awesome -->
+    <link rel="stylesheet" href="css/all.min.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- main style -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- media style -->
+    <link rel="stylesheet" href="css/media.css" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand position-fixed fixed-top navbar-light bg-white p-0 py-3  ">
+        <div class="container">
+            <div class="d-flex align-items-center ">
+                <i class="fa-solid fa-address-book shadow me-2 editicon"></i>
+                <div class="">
+                    <h1 class="m-0 edittitle">Contact<span class="spancolor">Hub</span></h1>
+                    <span class="f-12px text-gray-500 fw-semibold spanapper">Smart Contact Manage</span>
+                </div>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav d-flex align-items-center ms-auto">
+                    <li class="nav-item me-2 ">
+                        <button class="open-modal me-1 me-lg-0">+ Add <span
+                                class="spanapper1 m-0">Contact</span></button>
+                        <div class="modal-overlay " id="modal">
+                            <div class="modal-box">
+                                <div class="modal-header">
+                                    <h2 class="m-0">Add New Contact</h2>
+                                    <span class="close-btn"><i class="fa-solid fa-xmark"></i></span>
+                                </div>
+                                <div class="profile-box">
+                                    <div class="avatar">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                    <div class="text-center">
+                                        <input type="file" id="uploadImage" accept="image/*" hidden>
+                                        <label for="uploadImage" class="change-photo text-gray-500 fw-semibold">
+                                            <i class="fa-solid fa-camera me-1"></i> Change Photo
+                                        </label>
+                                    </div>
+                                </div>
+                                <form class="form px-4 pb-4">
+                                    <label>Full Name <span>*</span></label>
+                                    <input type="text" placeholder="Enter full name" id="contactNameInput">
+
+                                    <label>Phone Number <span>*</span></label>
+                                    <input type="text" placeholder="e.g., 01012345678" id="contactNumberInput">
+
+                                    <label>Email Address</label>
+                                    <input type="email" placeholder="name@example.com" id="contactEmailInput">
+
+                                    <label>Address</label>
+                                    <input type="text" placeholder="Enter address" id="contactAddressInput">
+
+                                    <label>Group</label>
+                                    <select name="select" class="cursor-pointer" id="contactGroupInput">
+                                        <option value="">Select a group</option>
+                                        <option value="family">Family</option>
+                                        <option value="friends">Friends</option>
+                                        <option value="work">Work</option>
+                                        <option value="school">School</option>
+                                        <option value="other">Other</option>
+                                    </select>
+
+                                    <label>Notes</label>
+                                    <textarea id="contactNoteInput"
+                                        placeholder="Add notes about this contact"></textarea>
+                                    <div class="options">
+                                        <label><input class="me-2" id="contactFavoriteInput" type="checkbox"><i
+                                                class="fa-solid fa-star" style="color: #FFD43B;"></i>Favorite</label>
+                                        <label><input id="contactEmergencyInput" class="me-2" type="checkbox"><i
+                                                class="fa-solid iconcolor fa-heart-pulse"></i> Emergency</label>
+                                    </div>
+                                    <div class="modal-footer-custom">
+                                        <button class="cancel-btn w-100 fw-bolder">Cancel</button>
+                                        <button class="save-btn w-100 fw-bolder"><i
+                                                class="fa-solid fa-check me-2 "></i>Save Contact</button>
+                                        <button class="edit-btn w-100 fw-bolder "><i
+                                                class="fa-solid fa-check me-2 "></i>Save Contact</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item  cursor-pointer liapper ">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-bell f-20px hovericon me-2"></i></a>
+                    </li>
+                    <li class="nav-item cursor-pointer liapper">
+                        <a class="nav-link" href="#"><i class="fa-solid fa-gear f-20px hovericon me-2"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="editimg">
+                            <img class="w-100" src="images/avatar-4.jpg" alt="">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="ContactHub">
+        <div class="container">
+            <div class="row row-cols-2 row-cols-lg-3 g-3 mb-4">
+                <div class="col">
+                    <div class="d-flex gap-3 align-items-center bg-white p-20 rounded-4 bordercalc">
+                        <i class="fa-solid fa-users icon-contact shadow-lg"></i>
+                        <div>
+                            <p class="m-0 f-12px text-gray-500 fw-medium">TOTAL</p>
+                            <span id="totalcontact" class="f-24px fw-bolder">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-flex gap-3  align-items-center bg-white p-20 rounded-4 bordercalc">
+                        <i class="fa-solid fa-star icon-contact2 shadow-lg"></i>
+                        <div>
+                            <p class="m-0 f-12px text-gray-500 fw-medium text-uppercase">Favorites</p>
+                            <span id="favcontact" class="f-24px fw-bolder">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-flex gap-3 align-items-center bg-white p-20 rounded-4 bordercalc">
+                        <i class="fa-solid fa-heart-pulse icon-contact3 shadow-lg"></i>
+                        <div>
+                            <p class="m-0 f-12px text-gray-500 fw-medium text-uppercase">Emergency</p>
+                            <span id="emarcontact" class="f-24px fw-bolder">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-9">
+                    <div class="mb-4">
+                        <h2 class="f-30px fw-bolder">All Contacts</h2>
+                        <p class="f-14px text-gray-500">Manage and organize your 0 contacts</p>
+                        <div class="position-relative">
+                            <input oninput="searchContacts()" type="search" class="form-control editinput rounded-3"
+                                placeholder="Search by name, phone, or email..." id="Search" required>
+                            <i class="fa-solid fa-magnifying-glass searchicon"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="noData" class="text-center p-80px">
+                            <i class="fa-solid fa-address-book icon-book"></i>
+                            <p class="m-0 f-16px text-gray-500 fw-medium">No contacts found</p>
+                            <p class="m-0 f-14px text-gray-400">Click "Add Contact" to get started</p>
+                        </div>
+                        <div id="rowAdd" class="row row-cols-lg-2">
+                            <!--  <div class="col">
+                            <div class=" bg-white rounded-4 shadow-sm overflow-hidden">
+                                <div class="px-3 pt-3 pb-2">
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        <div class="position-relative">
+                                            <p class="m-0 fs-5 firstcharctar">MI</p>
+                                            <div class="contact-box">
+                                                <span class="badge star"><i class="fa-solid fa-star"></i></span>
+                                                <span class="badge heart"><i class="fa-solid fa-heart-pulse"></i></span>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <p class="m-1 fw-bold">Mokhtar Ismail</p>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa-solid fa-phone me-2 phoneicon"></i>
+                                                <p class="m-0 f-14px text-gray-500"> 01224201454</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <i class="fa-solid fa-envelope me-2 envelopeicon"></i>
+                                        <span class="f-14px text-gray-500">mokhtarismail619431@gmail.com</span>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-location-dot me-2 locationicon"></i>
+                                        <span class="f-14px text-gray-500">Zagzig</span>
+                                    </div>
+                                    <div>
+                                        <p class="spangroup m-0 mt-3">School</p>
+                                    </div>
+                                </div>
+                                <div class="p-3 d-flex justify-content-between bg-icons">
+                                    <div class="d-flex align-items-center g-3">
+                                        <a href="tel:01224201454">
+                                            <i class="fa-solid fa-phone me-2 phoneicon2"></i>
+                                        </a>
+                                        <a href="mailto:mokhtarismail619431@gmail.com">
+                                            <i class="fa-solid fa-envelope envelopeicon2"></i>
+                                        </a>
+                                        
+                                    </div>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <i class="fa-regular fa-star text-gray-400 iconrighthover"></i>
+                                        <i class="fa-regular fa-heart text-gray-400 iconrighthover2"></i>
+                                        <i class="fa-solid fa-pen text-gray-400 iconrighthover3"></i>
+                                        <i class="fa-solid fa-trash text-gray-400 iconrighthover4"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3">
+                    <div>
+                        <div class="rounded-4 overflow-hidden bg-white mt-3 shadow-sm">
+                            <div class="d-flex gap-3 align-items-center bg-yellow p-20  ">
+                                <i class="fa-solid fa-star icon-Favorites shadow-lg"></i>
+                                <div>
+                                    <p class="m-0 f-16px fw-bold ">Favorites</p>
+                                    <span class="f-11px text-gray-500 fw-bolder">Quick access to starred
+                                        contacts</span>
+                                </div>
+                            </div>
+                            <div id="favoritesArea"></div>
+                            <!-- <div class="p-2 mt-2">
+                                <div class="d-flex align-items-center justify-content-between bg-green rounded-3 p-2">
+                                    <div class="d-flex align-items-center">
+                                        <p class="fisrstcharctrfavourite m-0 me-2">MI</p>
+                                        <div>
+                                            <span class="f-14px fw-medium">Mokhtar Ismail</span>
+                                            <p class="m-0 f-12px text-gray-400">01224201454</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="tel:01224201454">
+                                            <i class="fa-solid fa-phone me-2 phoneicon2"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                        <div class="rounded-4 overflow-hidden bg-white mt-3 shadow-sm">
+                            <div class="d-flex gap-3 align-items-center bg-red-500 p-20  ">
+                                <i class="fa-solid fa-heart-pulse icon-Emergency shadow-lg"></i>
+                                <div>
+                                    <p class="m-0 f-16px fw-bold ">Emergency</p>
+                                    <span class="f-11px text-gray-500 fw-bolder">Important contacts for urgent
+                                        calls</span>
+                                </div>
+                            </div>
+                            <div id="emergencyArea"></div>
+                            <!-- <div class="p-2 mt-2">
+                                <div class="d-flex align-items-center justify-content-between bg-green rounded-3 p-2">
+                                    <div class="d-flex align-items-center">
+                                        <p class="fisrstcharctrfavourite m-0 me-2">MI</p>
+                                        <div>
+                                            <span class="f-14px fw-medium">Mokhtar Ismail</span>
+                                            <p class="m-0 f-12px text-gray-400">01224201454</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <a href="tel:01224201454">
+                                            <i class="fa-solid fa-phone me-2 phoneicon2"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+    </section>
+
+
+
+    <!-- Bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
