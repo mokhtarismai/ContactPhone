@@ -38,6 +38,8 @@ if (localStorage.getItem(`contactList`) !== null) {
 }
 
 document.querySelector(".open-modal").addEventListener("click", function () {
+  reamoveForm();
+  currentEditIndex = null;
   modal.style.display = "flex";
 });
 
@@ -53,6 +55,7 @@ document.querySelector(".save-btn").addEventListener("click", function () {
   if (!vaildation()) {
     return;
   }
+  if (currentEditIndex !== null) return;
   var number = contactNumberInput.value.trim();
   var exists = contactList.some((c) => c.number === number);
 
@@ -222,6 +225,7 @@ function addContacts() {
   };
 
   contactList.push(Contacts);
+  currentEditIndex = null;
 
   localStorage.setItem(`contactList`, JSON.stringify(contactList));
 
@@ -428,7 +432,7 @@ function saveContact() {
     contactList.push(newContact);
   }
 
-  localStorage.setItem("ContactList", JSON.stringify(contactList));
+  localStorage.setItem("contactList", JSON.stringify(contactList));
   displayContacts();
   modal.style.display = "none";
     Swal.fire({
@@ -568,3 +572,4 @@ function toggleEmergency(index) {
   displayEmergency();
   updateCounters();
 }
+
